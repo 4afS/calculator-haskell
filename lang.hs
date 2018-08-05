@@ -2,7 +2,7 @@ import Data.Char
 
 data Token = Plus 
            | Sub
-           | Multiply
+           | TnNat Int
            deriving Show 
 
 data Term = Add Int Int
@@ -17,7 +17,6 @@ lexer xs = map toToken xs
             | isDigit x = TnNat $ digitToInt x
             | x == '+' = Plus
             | x == '-' = Sub
-            | x == '*' = Multiply
 
 parser :: [Token] -> Term
 parser = undefined
