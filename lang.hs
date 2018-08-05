@@ -1,7 +1,7 @@
 import Data.Char
 
 data Token = Plus 
-           | Minas
+           | Minus
            | TnNat Int
            deriving (Show, Eq)
 
@@ -21,13 +21,13 @@ lexer = map toToken
     where toToken x
             | isDigit x = TnNat $ digitToInt x
             | x == '+' = Plus
-            | x == '-' = Minas
+            | x == '-' = Minus
 
 parser :: [Token] -> Term
 parser tokens = if length tokens > 1 then parse tokens else toTerm $ head tokens
     where parse (n:s:xs)
             | s == Plus = Add (toTerm n) (parser xs)
-            | s == Minas = Sub (toTerm n) (parser xs)
+            | s == Minus = Sub (toTerm n) (parser xs)
           toTerm (TnNat n) = TmNat n
 
 eval :: Term -> Int
