@@ -9,10 +9,10 @@ data Term = Add Int Int
           | TmNat Int
 
 main = do
-    print $ rexer "1+2+3"
+    print $ lexer "1+2+3"
 
-rexer :: [Char] -> [Token]
-rexer xs = map toToken xs
+lexer :: [Char] -> [Token]
+lexer xs = map toToken xs
     where toToken x
             | isDigit x = TnNat $ digitToInt x
             | x == '+' = Plus
