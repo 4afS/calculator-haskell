@@ -10,11 +10,7 @@ data Term = Add Term Term
           | TmNat Int
            deriving Show 
 
-main = do
-    print "1+2-3"
-    print $ lexer "1+2-3"
-    print $ parser $ lexer "1+2-3"
-    print $ eval $ parser $ lexer "1+2-3"
+main = print $ eval $ parser $ lexer "1+2-3"
 
 lexer :: String -> [Token]
 lexer = map toToken
